@@ -3,17 +3,17 @@ layout: post
 title: Turn you iphone into a ros camera node under ubuntu
 ---
 
-    Durning the last four weeks i was exploring some monocular SLAM projects. At first i use my laptop's own camera as a image sensor, which is not good enough for capturing high quality pictures. Also, the camera and the screen are on the same side so it's quite inconvenient to monitoring those SLAM systems with live video input. I have a DC and an ihpone at hand so i decide to turn then into separate or wireless sensors for my laptop. In this post i'll focus on the approch of turning iphone(maybe ipad, too) into a ros node unter ubuntu 14.04. The basic idea came from [this thread](http://ubuntuforums.org/showthread.php?t=2092935)
+Durning the last four weeks i was exploring some monocular SLAM projects. At first i use my laptop's own camera as a image sensor, which is not good enough for capturing high quality pictures. Also, the camera and the screen are on the same side so it's quite inconvenient to monitoring those SLAM systems with live video input. I have a DC and an ihpone at hand so i decide to turn then into separate or wireless sensors for my laptop. In this post i'll focus on the approch of turning iphone(maybe ipad, too) into a ros node unter ubuntu 14.04. The basic idea came from [this thread](http://ubuntuforums.org/showthread.php?t=2092935)
  
 **1. Make your iphone as a webcam**
 
-    It's not so easy under linux especially you don't have a customized app that just meed the needs. I use [Mini WebCam](http://itunes.apple.com/cn/app/mini-webcam/id379896463?mt=8) to run on my iphone as a live video server. It's free and easy to use.   
+It's not so easy under linux especially you don't have a customized app that just meed the needs. I use [Mini WebCam](http://itunes.apple.com/cn/app/mini-webcam/id379896463?mt=8) to run on my iphone as a live video server. It's free and easy to use.   
 
-    Open Mini WebCam on your iphone and press the start button. It will then stream of videos to your WLAN. Make sure your iphone and PC are in the same WLAN. You can check the video stream via web browser on ubuntu. Just type the address displayed on iphone into your Firefox's address bar. If you see the live video in your browser then you are done.
+Open Mini WebCam on your iphone and press the start button. It will then stream of videos to your WLAN. Make sure your iphone and PC are in the same WLAN. You can check the video stream via web browser on ubuntu. Just type the address displayed on iphone into your Firefox's address bar. If you see the live video in your browser then you are done.
 
 **2. Create virtual video devices via v4l2loopback**
 
-    In this step we will create a virtual video devices "/dev/video*" for ros from the live video we created. We need a kernel module called [v4l2loopback](https://github.com/umlaeute/v4l2loopback.git) to create V4L2 loopback devices. You may try install via apt:
+In this step we will create a virtual video devices "/dev/video*" for ros from the live video we created. We need a kernel module called [v4l2loopback](https://github.com/umlaeute/v4l2loopback.git) to create V4L2 loopback devices. You may try install via apt:
 
 	sudo apt-get install v4l2loopback-dkms
 
