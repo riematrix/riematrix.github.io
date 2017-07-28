@@ -1,0 +1,145 @@
+
+/**
+ * Utils for css3 transform, transition and animations
+ */
+
+$browser-prefixes: webkit moz ms o;
+
+/****************** import mixin from Hugo Giraudel ******************/
+/// Mixin to prefix a property
+/// @author Hugo Giraudel
+/// @param {String} $property - Property name
+/// @param {*} $value - Property value
+/// @param {List} $prefixes (()) - List of prefixes to print
+@mixin prefix($property, $value, $prefixes: $browser-prefixes) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+
+  // Output standard non-prefixed declaration
+  #{$property}: $value;
+}
+/****************** end import **************************************/
+
+@mixin translateCord($cord, $val){
+  @include prefix(transform, translate#{$cord + '(' + $val + ')'}, $browser-prefixes);
+}
+@mixin translateXY($x, $y){
+  $val: matrix#{'(1,0,0,1,' + $x + ',' + $y + ')'} translateZ(0);
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin translateY($y){
+  //    @include translateXY(0,$y);
+  $val: translateY#{'(' + $y + ')'} translateZ(0);
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin translateX($x){
+  //    @include translateXY($x,0);
+  $val: translateX#{'(' + $x + ')'} translateZ(0);
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin translateScale($ratio){
+  $val: matrix#{'(' + $ratio + ',0,0,' + $ratio + ',0,0 )'};
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin translateScaleXY($x,$y){
+  $val: #{scale($x,$y)};
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin transitionPropertyPrefixTransform($properties){
+  $result-nofix: ();
+  @each $prefix in $browser-prefixes {
+    $result: ();
+    $result-nofix: ();
+    @each $property in $properties {
+      @if($property == transform){
+        $result: append($result, #{ '-' + $prefix + '-' + $property}, comma);
+      }
+      @else{
+        $result: append($result, $property, comma);
+      }
+      $result-nofix: append($result-nofix, $property, comma);
+    }
+    #{'-' + $prefix + '-transition-property'}: $result;
+    #{'-' + $prefix + '-transition-property'}: $result-nofix;
+  }
+  transition-property: $result-nofix;
+}
+@mixin transitionDuration($durations){
+  $result: ();
+  @each $property in $durations {
+    $result: append($result, $property !important, comma);
+  }
+  @include prefix(transition-duration, $result, $browser-prefixes);
+}
+@mixin transition($properties:all,$duration:1s,$bezier:ease,$delay:0s){
+  @include prefix(transition, #{'all ' + $duration + ' ' + $bezier + ' ' + $delay + ' '},
+          $browser-prefixes);
+  @include transitionPropertyPrefixTransform($properties);
+  @include transitionDuration($duration);
+}
+@mixin transitionDelay($delays){
+  $result: ();
+  @each $property in $delays {
+    $result: append($result, $property !important, comma);
+  }
+  @include prefix(transition-delay, $result, $browser-prefixes);
+}
+@mixin transitionProperty($properties){
+  @include prefix(transition-property, $properties, $browser-prefixes);
+}
+@mixin transformRotate($deg){
+  $val: rotate#{'(' + $deg + 'deg)'};
+  @include prefix(transform, $val, $browser-prefixes);
+}
+@mixin transformOrigin($x, $y){
+  $val: #{$x + ' ' + $y};
+  @include prefix(transform-origin, $val, $browser-prefixes);
+}
+
+// keyframes mixin
+@mixin keyframesRotate($name, $total, $start, $dir:1){
+  $step_percent: 1 / $total * 100;
+  $step_deg: 360 / $total;
+  $original_start: $start;
+
+  // webkit
+  $percent: 0;
+  $start: $original_start;
+  @-webkit-keyframes #{$name} {
+    @for $i from 0 through $total {
+      $percent: 0% + $i / $total * 100%;
+      #{$percent} {
+        @include prefix(transform,rotate(#{$start}deg),webkit);
+      }
+      $start: $start + $dir * $step_deg;
+    }
+  }
+  // others
+  $percent: 0;
+  $start: $original_start;
+  @keyframes #{$name} {
+    @for $i from 0 through $total {
+      $percent: 0% + $i / $total * 100%;
+      #{$percent} {
+        @include prefix(transform,rotate(#{$start}deg),());
+      }
+      $start: $start + $dir * $step_deg;
+    }
+  }
+}
+
+/*fast transition*/
+$sections-transition-duration: 0.6s;
+
+@mixin fast_transition(){
+  @include prefix(transition-delay, 0s !important, $browser-prefixes);
+  @include prefix(transition-duration, $sections-transition-duration !important, $browser-prefixes);
+}
+
+/*absolute center*/
+@mixin translate_center(){
+  left: 50%;
+  top: 50%;
+  @include prefix(transform, translate(-50%, -50%));
+}

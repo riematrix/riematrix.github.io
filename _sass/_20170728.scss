@@ -1,0 +1,85 @@
+@import "math";
+@import "reset";
+
+$list: 7;
+$rotate-offset: 45deg-180deg/$list;
+
+html{
+  height: 100%;
+  background: #333;
+}
+.lottery-sector {
+  $container-scale: 60%;
+  list-style: none;
+  width: $container-scale;
+  margin: 20% auto;
+  padding-top: $container-scale;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 10rem rgba(255,255,255,0.3);
+  border: 1px solid #000;
+  background: #eee;
+
+  $skew-angle: 45deg-180deg/$list;
+
+  /**/
+  $radius: 100%;
+  $theta : pi() / $list;
+  $center-distance: $radius / sqrt(5 * pow(tan($theta), 2) + 4 * tan($theta) + 1);
+  $transformed-edge-length: 2 * tan($theta) * $center-distance;
+  $transformed-scale-ratio: (1 + tan(pi() / 4 - $theta)) * (1 + tan(- pi() / 4 + $theta));
+  $initial-edge-length: $transformed-edge-length / $transformed-scale-ratio;
+  $edge-distance: -1/2 * $initial-edge-length + ($center-distance + $transformed-scale-ratio * $initial-edge-length / 2)/(sqrt(2) * (1 + tan(pi() / 4 - $theta)));
+  >div {
+    right: 50%;
+    bottom: 50%;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    transform-origin: 100% 100%;
+    //outline: 1px solid #000;
+    &:nth-child(4n)
+    {
+      background-color: #ff8675;
+    }
+    &:nth-child(4n+1)
+    {
+      background-color: #ffc857;
+    }
+    &:nth-child(4n+2)
+    {
+      background-color: #8fb8ff;
+    }
+    &:nth-child(4n+3)
+    {
+      background-color: #d9b0ff;
+    }
+    span{
+      width: $initial-edge-length ;
+      height: $initial-edge-length;
+      //line-height: 25vw;
+      display: flex;
+      align-items:center;
+      text-align: center;
+      justify-content:center;
+      vertical-align: bottom;
+      position: absolute;
+      color: #1875E7;
+      font-weight: bolder;
+      //bottom: ($radius - $initial-edge-length)*0.25;
+      //right: ($radius - $initial-edge-length)*0.25;
+      bottom: $edge-distance;
+      right: $edge-distance;
+      transform: skew(-$rotate-offset, -$rotate-offset) rotate(-45deg);
+      z-index: 10;
+      font-size: 5vw;
+      //border: 1px solid #000;
+    }
+  }
+  @for $idx from 1 through $list {
+    >div:nth-child(#{$idx}) {
+      transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($rotate-offset, $rotate-offset);
+    }
+  }
+}
