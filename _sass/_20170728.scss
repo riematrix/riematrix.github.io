@@ -117,3 +117,99 @@ $rotate-offset: 45deg-180deg/$list;
     }
   }
 }
+
+
+.lottery-sector.full{
+  width: 100%;
+  padding-top: 100%;
+
+  &.f1{
+    transform: translateX(-30%);
+    p{
+      position: absolute;
+    }
+    .pc{
+      left: 50%;
+      top:50%;
+    }
+    .pd{
+      left: 76%;
+      top:50%;
+    }
+    .po{
+      left: 88%;
+      top:50%;
+    }
+    .pa{
+      left: 76%;
+      top: 39%;
+    }
+    .pb{
+      left: 76%;
+      top:61%;
+    }
+    .pe{
+      left: 80%;
+      top: 32%;
+    }
+    .theta{
+      top: 40%;
+      left: 60%;
+    }
+    .alpha{
+      top: 35%;
+      left: 58%;
+    }
+  }
+
+  >div{
+    &.c1,&.c2,&.c3,&.c4{
+      span:before{
+        content: "";
+        position: absolute;
+        height: 600%;
+        width: 0;
+        border-left: 1px solid;
+      }
+    }
+    &.c1{
+      span:after{
+        content: "";
+        position: absolute;
+        height: 600%;
+        width: 0;
+        border-left: 1px solid;
+        transform: rotate(64deg);
+      }
+
+      &:before{
+        content: "";
+        position: absolute;
+        border-right: 1px dashed;
+        border-bottom: 1px dashed;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    &.c2{
+      span:before{
+        content: "";
+        position: absolute;
+        height: 600%;
+        width: 0;
+        border-left: 1px solid;
+        transform: rotate(-45deg);
+      }
+    }
+    &.c3,&.c4{
+      span:after{
+        content: "";
+        position: absolute;
+        height: 600%;
+        width: 0;
+        border-left: 1px solid;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+}
