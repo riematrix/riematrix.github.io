@@ -3,12 +3,15 @@
 $list: 7;
 $rotate-offset: 45deg-180deg/$list;
 
+.post{
+  overflow: hidden;
+}
 
 .lottery-sector {
   $container-scale: 60%;
   list-style: none;
   width: $container-scale;
-  margin: 20% auto;
+  margin: 30px auto;
   padding-top: $container-scale;
   position: relative;
   overflow: hidden;
@@ -119,12 +122,23 @@ $rotate-offset: 45deg-180deg/$list;
 }
 
 
+.sector-container{
+  width: 100%;
+  padding-top:60%;
+  overflow: hidden;
+  position: relative;
+  margin: 20% auto;
+}
+
 .lottery-sector.full{
   width: 100%;
   padding-top: 100%;
 
   &.f1{
-    transform: translateX(-30%);
+    position: absolute;
+    top: 50%;
+    transform: translateX(-30%) translateY(-50%);
+    margin: 0;
     p{
       position: absolute;
     }
@@ -212,4 +226,6 @@ $rotate-offset: 45deg-180deg/$list;
       }
     }
   }
+
+
 }
