@@ -3,6 +3,7 @@
 $list: 7;
 $rotate-offset: 45deg-180deg/$list;
 
+
 .lottery-sector {
   $container-scale: 60%;
   list-style: none;
@@ -21,11 +22,19 @@ $rotate-offset: 45deg-180deg/$list;
   /**/
   $radius: 100%;
   $theta : pi() / $list;
+  $alpha : pi() / 4 - $theta;
+
   $center-distance: $radius / sqrt(5 * pow(tan($theta), 2) + 4 * tan($theta) + 1);
   $transformed-edge-length: 2 * tan($theta) * $center-distance;
-  $transformed-scale-ratio: (1 + tan(pi() / 4 - $theta)) * (1 + tan(- pi() / 4 + $theta));
-  $initial-edge-length: $transformed-edge-length / $transformed-scale-ratio;
-  $edge-distance: -1/2 * $initial-edge-length + ($center-distance + $transformed-scale-ratio * $initial-edge-length / 2)/(sqrt(2) * (1 + tan(pi() / 4 - $theta)));
+
+  $skew-scale-ratio-1: (1 + tan($alpha));
+  $skew-scale-ratio-2: (1 + tan(-$alpha));
+  $skew-scale-ratio: $skew-scale-ratio-1 * $skew-scale-ratio-2;
+
+  $initial-edge-length: $transformed-edge-length / $skew-scale-ratio;
+
+  $edge-distance: -1/2 * $initial-edge-length + ($center-distance + $transformed-edge-length / 2)/ $skew-scale-ratio-1 / sqrt(2);
+
   >div {
     right: 50%;
     bottom: 50%;
@@ -75,6 +84,36 @@ $rotate-offset: 45deg-180deg/$list;
   @for $idx from 1 through $list {
     >div:nth-child(#{$idx}) {
       transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($rotate-offset, $rotate-offset);
+    }
+  }
+
+  ///
+  >div.c1 {
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    &:before{
+      transform: skew(-$rotate-offset, -$rotate-offset);
+      transform-origin: 100% 100%;
+    }
+  }
+  ///
+  >div.c2 {
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    span{
+      transform: skew(-$rotate-offset, -$rotate-offset) rotate(0deg);
+    }
+  }
+  ///
+  >div.c3 {
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    span{
+      transform: skew(0deg, 0deg) rotate(0deg);
+    }
+  }
+  ///
+  >div.c4 {
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list);
+    span{
+      transform: skew(0deg, 0deg) rotate(0deg);
     }
   }
 }
