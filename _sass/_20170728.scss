@@ -141,6 +141,7 @@ $rotate-offset: 45deg-180deg/$list;
     margin: 0;
     p{
       position: absolute;
+      margin: 0;
     }
     .pc{
       left: 50%;
@@ -167,11 +168,11 @@ $rotate-offset: 45deg-180deg/$list;
       top: 32%;
     }
     .theta{
-      top: 40%;
+      top: 44%;
       left: 60%;
     }
     .alpha{
-      top: 35%;
+      top: 39%;
       left: 58%;
     }
   }
