@@ -193,7 +193,8 @@ $rotate-offset: 45deg-180deg/$list;
         height: 600%;
         width: 0;
         border-left: 1px solid;
-        transform: rotate(64deg);
+        top: 50%;
+        transform: translate(-50%,-50%) rotate(64deg);
       }
 
       &:before{
