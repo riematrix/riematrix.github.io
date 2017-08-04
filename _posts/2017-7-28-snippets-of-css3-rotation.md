@@ -206,8 +206,6 @@ figure 1 can be described as follows:
             \begin{bmatrix} x' \\ y' \end{bmatrix} =
             \begin{bmatrix} 1 & tan(\alpha) \\ tan(\alpha) & 1 \end{bmatrix}
             \begin{bmatrix} x \\ y \end{bmatrix}
-            \\=
-            \begin{bmatrix} (1 + tan(\alpha))x \\ (1 + tan(\alpha))y \end{bmatrix}
             \end{equation*}
     
             For any segment on the original sector, we can calculate the scale variation ratio
@@ -223,8 +221,6 @@ figure 1 can be described as follows:
             \begin{bmatrix} x'' \\ y'' \end{bmatrix} =
             \begin{bmatrix} 1 & tan(-\alpha) \\ tan(-\alpha) & 1 \end{bmatrix}
             \begin{bmatrix} x' \\ y' \end{bmatrix}
-            \\=
-            \begin{bmatrix} (1 + tan(-\alpha))x' \\ (1 + tan(-\alpha))y' \end{bmatrix}
             \end{equation*}
     
             The scale variation ratio of the transform is:
