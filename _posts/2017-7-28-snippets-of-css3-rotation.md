@@ -23,7 +23,7 @@ We will focus on creating such turntables step by step.
 
 **1. A turntable with arbitrary number of sectors**   
 
-i. Building a circle   
+<b>i.</b> Building a circle   
 
 Consider the turntable's outer container as a circle. You can create the circle with div/css3.
 Either fixed or float sizing is OK for the container. 
@@ -45,7 +45,7 @@ styling such a container with class name 'lottery-sector'.
 The variable $container-scale can be adjusted to any size in any units if you need.
 You may also apply vw/vh rules to both width and height to build this circle.
 
-ii. Styling a single sector area   
+<b>ii.</b> Styling a single sector area   
 
 The turntable has arbitrary number of child sectors that uniform the circle. 
 To get a single sector with one arbitrary arc angel less than 180deg we use css3 transform 
@@ -63,7 +63,7 @@ The convenience of this strategy will be discussed in later sections.
         \begin{align}\theta + \alpha = \frac\pi{4}\end{align}
 </p>
 
-iii. Positioning of sectors in circle   
+<b>iii.</b> Positioning of sectors in circle   
 
  In order to position a sector easily in one circle, 
  we choose one of the sector's corner as transform origin.
@@ -108,7 +108,9 @@ iv. Fill sectors into circle
 </div>
 
 **2. Square content area in each sector, sizing and positioning**   
-i. Square content area in each sector   
+
+<b>i.</b> Square content area in each sector   
+
 If float content sizing & positioning is important, we need some precise controls.
 Imagine you need to put content with different size into a 
 turntable, and the content area should be as large as possible.
@@ -164,7 +166,7 @@ Moreover, we can strictly prove that the largest inscribed rectangle is a square
     </p>
 </div>
 
-ii. Retrieve the style property values   
+<b>ii.</b> Retrieve the style property values   
 
 The above calculated value cannot be applied as css property values directly 
 because the skew transform is not scale-invariant. 
@@ -209,7 +211,7 @@ figure 1 can be described as follows:
     
             For any segment on the original sector, we can calculate the scale variation ratio
             of the transform:
-            \begin{align}(1+tan(\alpha))\end{align}\
+            \begin{align}(1+tan(\alpha))\end{align}
         </p>
         <p>&nbsp;</p>
         <p>
@@ -225,7 +227,7 @@ figure 1 can be described as follows:
             \end{equation*}
     
             The scale variation ratio of the transform is:
-            \begin{align}(1+tan(-\alpha))\end{align}\
+            \begin{align}(1+tan(-\alpha))\end{align}
         </p>
         <p><b> NOTE: </b>Although these two transforms is of different coordinate system,
             we can still calculate the right scale variation ratio without an uniform
@@ -291,7 +293,7 @@ figure 1 can be described as follows:
         </p>
 </div>
    
-iii. Result    
+<b>iii.</b> Result    
 
 Below is some examples of turntables with different amount of sectors.
 
