@@ -192,7 +192,7 @@ The above figure 2 shows the original status of a single sector and it's
 content child before transform. The major process form figure 2 to 
 figure 1 can be described as follows:
 
-     step1. skew <sector> which is the parent of content (transform origin is left bottom);
+     step1. skew <sector> which is the parent of content (transform origin is right bottom);
      step2. skew <content> back to correct the parent's skew effect (transform origin is center);
      step3. rotate <content> to make the content square parallel with 
             the symmetry axis of the sector;
@@ -276,7 +276,7 @@ figure 1 can be described as follows:
             (1+tan(\alpha)) |\vec{\mathbf{O_0C}}| = |\vec{\mathbf{OC}}|
             \end{align}
     
-            where \(\vec{\mathbf{OC}}\) in figure 1 is transformed vector of
+            where \(\vec{\mathbf{OC}}\) in figure 1 is transformed vector of 
             \(\vec{\mathbf{O_0C}}\) in figure 2.<br>
             The module of \(\vec{\mathbf{OC}}\) can be calculated as:
     
@@ -391,4 +391,7 @@ I will paste the core SCSS code as the end.
       }
     }
 
-/////////////////////////////////////////////////////////////////
+The scss math dependency can be fetched from 
+[sass-math](https://github.com/FrontendMatter/sass-math) 
+and 
+[sass-sqrt-function](http://www.antimath.info/css/sass-sqrt-function/)
