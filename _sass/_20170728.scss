@@ -1,14 +1,15 @@
 @import "math";
 
+$container-scale: 60%;
 $list: 7;
 $rotate-offset: 45deg-180deg/$list;
+$skew-angle: 45deg-180deg/$list;
 
 .post{
   overflow: hidden;
 }
 
 .lottery-sector {
-  $container-scale: 60%;
   list-style: none;
   width: $container-scale;
   margin: 30px auto;
@@ -19,8 +20,6 @@ $rotate-offset: 45deg-180deg/$list;
   box-shadow: 0 0 10rem rgba(255,255,255,0.3);
   border: 1px solid #000;
   background: #eee;
-
-  $skew-angle: 45deg-180deg/$list;
 
   /**/
   $radius: 100%;
@@ -78,7 +77,7 @@ $rotate-offset: 45deg-180deg/$list;
       //right: ($radius - $initial-edge-length)*0.25;
       bottom: $edge-distance;
       right: $edge-distance;
-      transform: skew(-$rotate-offset, -$rotate-offset) rotate(-45deg);
+      transform: skew(-$skew-angle, -$skew-angle) rotate(-45deg);
       z-index: 10;
       font-size: 5vw;
       //border: 1px solid #000;
@@ -86,28 +85,28 @@ $rotate-offset: 45deg-180deg/$list;
   }
   @for $idx from 1 through $list {
     >div:nth-child(#{$idx}) {
-      transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($rotate-offset, $rotate-offset);
+      transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($skew-angle, $skew-angle);
     }
   }
 
   ///
   >div.c1 {
-    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($skew-angle, $skew-angle);
     &:before{
-      transform: skew(-$rotate-offset, -$rotate-offset);
+      transform: skew(-$skew-angle, -$skew-angle);
       transform-origin: 100% 100%;
     }
   }
   ///
   >div.c2 {
-    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($skew-angle, $skew-angle);
     span{
-      transform: skew(-$rotate-offset, -$rotate-offset) rotate(0deg);
+      transform: skew(-$skew-angle, -$skew-angle) rotate(0deg);
     }
   }
   ///
   >div.c3 {
-    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($rotate-offset, $rotate-offset);
+    transform: rotate((1)*360deg/$list + $rotate-offset + 90deg - 180deg/$list) skew($skew-angle, $skew-angle);
     span{
       transform: skew(0deg, 0deg) rotate(0deg);
     }
@@ -127,7 +126,7 @@ $rotate-offset: 45deg-180deg/$list;
   padding-top:60%;
   overflow: hidden;
   position: relative;
-  margin: 20% auto;
+  margin: 10% auto;
 }
 
 .lottery-sector.full{
@@ -188,15 +187,6 @@ $rotate-offset: 45deg-180deg/$list;
       }
     }
     &.c1{
-      span:after{
-        content: "";
-        position: absolute;
-        height: 600%;
-        width: 0;
-        border-left: 1px solid;
-        top: 50%;
-        transform: translate(-50%,-50%) rotate(64deg);
-      }
 
       &:before{
         content: "";
@@ -224,10 +214,144 @@ $rotate-offset: 45deg-180deg/$list;
         height: 600%;
         width: 0;
         border-left: 1px solid;
-        transform: rotate(-45deg);
+        top: 50%;
+        transform: translate(-50%,-50%) rotate(-45deg);
       }
     }
   }
 
 
+}
+
+.figure-label{
+  color: #000;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.f2{
+  position: absolute;
+  top: 50%;
+  transform: translateX(-30%) translateY(-50%);
+  margin: 0;
+  p{
+    position: absolute;
+  }
+  .pc{
+    left: 50%;
+    top:50%;
+  }
+  .po{
+    left: 74%;
+    top:50%;
+  }
+  .pe{
+    left: 63%;
+    top: 32%;
+  }
+  .pf{
+    left: 67%;
+    top: 36%;
+  }
+}
+
+
+
+
+$container-scale: 40%;
+
+$list: 3;
+$rotate-offset: 45deg-180deg/$list;
+$skew-angle: 45deg-180deg/$list;
+.lottery-sector.s3{
+  width: $container-scale;
+  padding-top: $container-scale;
+  /**/
+  $radius: 100%;
+  $theta : pi() / $list;
+  $alpha : pi() / 4 - $theta;
+
+  $center-distance: $radius / sqrt(5 * pow(tan($theta), 2) + 4 * tan($theta) + 1);
+  $transformed-edge-length: 2 * tan($theta) * $center-distance;
+
+  $skew-scale-ratio-1: (1 + tan($alpha));
+  $skew-scale-ratio-2: (1 + tan(-$alpha));
+  $skew-scale-ratio: $skew-scale-ratio-1 * $skew-scale-ratio-2;
+
+  $initial-edge-length: $transformed-edge-length / $skew-scale-ratio;
+
+  $edge-distance: -1/2 * $initial-edge-length + ($center-distance + $transformed-edge-length / 2)/ $skew-scale-ratio-1 / sqrt(2);
+
+  >div {
+    span{
+      width: $initial-edge-length ;
+      height: $initial-edge-length;
+      bottom: $edge-distance;
+      right: $edge-distance;
+      transform: skew(-$skew-angle, -$skew-angle) rotate(-45deg);
+    }
+    &:before{
+      content: "";
+      position: absolute;
+      right: 0;
+      border-bottom: 0;
+      background: inherit;
+      width: 100%;
+      height: 100%;
+      transform: scale(2);
+      transform-origin: 100% 100%;
+    }
+  }
+  @for $idx from 1 through $list {
+    >div:nth-child(#{$idx}) {
+      transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($skew-angle, $skew-angle);
+    }
+  }
+}
+
+$list: 6;
+$rotate-offset: 45deg-180deg/$list;
+$skew-angle: 45deg-180deg/$list;
+$container-scale: 50%;
+.lottery-sector.s6{
+  width: $container-scale;
+  padding-top: $container-scale;
+  /**/
+  $radius: 100%;
+  $theta : pi() / $list;
+  $alpha : pi() / 4 - $theta;
+
+  $center-distance: $radius / sqrt(5 * pow(tan($theta), 2) + 4 * tan($theta) + 1);
+  $transformed-edge-length: 2 * tan($theta) * $center-distance;
+
+  $skew-scale-ratio-1: (1 + tan($alpha));
+  $skew-scale-ratio-2: (1 + tan(-$alpha));
+  $skew-scale-ratio: $skew-scale-ratio-1 * $skew-scale-ratio-2;
+
+  $initial-edge-length: $transformed-edge-length / $skew-scale-ratio;
+
+  $edge-distance: -1/2 * $initial-edge-length + ($center-distance + $transformed-edge-length / 2)/ $skew-scale-ratio-1 / sqrt(2);
+
+  >div {
+    span{
+      width: $initial-edge-length ;
+      height: $initial-edge-length;
+      bottom: $edge-distance;
+      right: $edge-distance;
+      transform: skew(-$skew-angle, -$skew-angle) rotate(-45deg);
+    }
+  }
+  @for $idx from 1 through $list {
+    >div:nth-child(#{$idx}) {
+      transform: rotate(($idx)*360deg/$list + $rotate-offset) skew($skew-angle, $skew-angle);
+    }
+  }
+}
+
+.lottery-sector.s3,.lottery-sector.s6,.lottery-sector.s7{
+  span{
+    border: 1px dashed;
+  }
 }
