@@ -9,7 +9,7 @@ $skew-angle: 45deg-180deg/$list;
   overflow: hidden;
 }
 
-.lottery-sector {
+.sectors-container {
   list-style: none;
   width: $container-scale;
   margin: 30px auto;
@@ -129,7 +129,7 @@ $skew-angle: 45deg-180deg/$list;
   margin: 10% auto;
 }
 
-.lottery-sector.full{
+.sectors-container.full{
   width: 100%;
   padding-top: 100%;
 
@@ -265,7 +265,7 @@ $container-scale: 40%;
 $list: 3;
 $rotate-offset: 45deg-180deg/$list;
 $skew-angle: 45deg-180deg/$list;
-.lottery-sector.s3{
+.sectors-container.s3{
   width: $container-scale;
   padding-top: $container-scale;
   /**/
@@ -315,7 +315,7 @@ $list: 6;
 $rotate-offset: 45deg-180deg/$list;
 $skew-angle: 45deg-180deg/$list;
 $container-scale: 50%;
-.lottery-sector.s6{
+.sectors-container.s6{
   width: $container-scale;
   padding-top: $container-scale;
   /**/
@@ -350,7 +350,7 @@ $container-scale: 50%;
   }
 }
 
-.lottery-sector.s3,.lottery-sector.s6,.lottery-sector.s7{
+.sectors-container.s3,.sectors-container.s6,.sectors-container.s7{
   span{
     border: 1px dashed;
   }

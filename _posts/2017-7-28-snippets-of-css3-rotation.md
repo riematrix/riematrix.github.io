@@ -29,12 +29,12 @@ Consider the turntable's outer container as a circle. You can create the circle 
 Either fixed or float sizing is OK for the container. 
 In this post I use float sizing method to make the style more adaptive.
 Below is an example scss snippet of basic rules that 
-styling such a container with class name 'lottery-sector'.
+styling such a container with class name 'sectors-container'.
 
-    <div class="lottery-sector"></div>
+    <div class="sectors-container"></div>
 
 	  $container-scale: 60%;
-	.lottery-sector {
+	.sectors-container {
 	  width: $container-scale;
 	  padding-top: $container-scale;
 	  position: relative;
@@ -70,7 +70,7 @@ The convenience of this strategy will be discussed in later sections.
  In this post, for example, we use the right-bottom corner
  and make it coincide with the circle center.
  
-    .lottery-sector >div {
+    .sectors-container >div {
         right: 50%;
         bottom: 50%;
         width: 50%;
@@ -87,7 +87,7 @@ iv. Fill sectors into circle
     $list: 7;
     $skew-angle: 45deg-180deg/$list;
     @for $idx from 1 through $list {
-        .lottery-sector >div:nth-child(#{$idx}) {
+        .sectors-container >div:nth-child(#{$idx}) {
           transform: rotate(($idx)*360deg/$list) skew($skew-angle, $skew-angle);
         }
       }
@@ -96,7 +96,7 @@ iv. Fill sectors into circle
  we get an adaptive turntable container.  
  
 <div markdown="0">
-    <div class="lottery-sector">
+    <div class="sectors-container">
         <div></div>
         <div></div>
         <div></div>
@@ -117,7 +117,7 @@ turntable, and the content area should be as large as possible.
 Thus finding out the largest inscribed rectangle parallel with the symmetry 
 axis of the sector seems to be a good start.  
 
-    <div class="lottery-sector">
+    <div class="sectors-container">
         <div data-role="sector">
             <span data-role="content">content</span>
         </div>
@@ -132,7 +132,7 @@ Moreover, we can strictly prove that the largest inscribed rectangle is a square
 
 <div markdown="0">
     <div class="sector-container">
-        <div class="lottery-sector full f1">
+        <div class="sectors-container full f1">
             <div class="c1"><span style="outline: 1px solid #000"></span></div>
             <p class="pc">C</p>
             <p class="pd">D</p>
@@ -176,7 +176,7 @@ we need to make reverse derivation to retrieve css rules for sectors before tran
 
 <div markdown="0">
     <div class="sector-container">
-        <div class="lottery-sector full f2">
+        <div class="sectors-container full f2">
             <div class="c4"><span style="outline: 1px solid #000"></span></div>
             <p class="pc">C</p>
             <p class="po">O<sub>0</sub></p>
@@ -299,12 +299,12 @@ figure 1 can be described as follows:
 Below is some examples of turntables with different amount of sectors.
 
 <div markdown="0">
-    <div class="lottery-sector s3">
+    <div class="sectors-container s3">
             <div><span>1</span></div>
             <div><span>2</span></div>
             <div><span>3</span></div>
         </div>
-        <div class="lottery-sector s6">
+        <div class="sectors-container s6">
             <div><span>1</span></div>
             <div><span>2</span></div>
             <div><span>3</span></div>
@@ -312,7 +312,7 @@ Below is some examples of turntables with different amount of sectors.
             <div><span>5</span></div>
             <div><span>6</span></div>
         </div>
-        <div class="lottery-sector s7">
+        <div class="sectors-container s7">
             <div><span>1</span></div>
             <div><span>2</span></div>
             <div><span>3</span></div>
@@ -330,7 +330,7 @@ I will paste the core SCSS code as the end.
     $rotate-offset: 45deg-180deg/$list;
     $skew-angle: 45deg-180deg/$list;
     
-    .lottery-sector {
+    .sectors-container {
       list-style: none;
       width: $container-scale;
       margin: 30px auto;
