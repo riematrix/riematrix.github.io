@@ -79,7 +79,7 @@ The convenience of this strategy will be discussed in later sections.
         transform-origin: 100% 100%;
         }
 
-iv. Fill sectors into circle      
+<b>iv.</b> Fill sectors into circle      
  
  Now we duplicate other sectors and position them around the circle. 
  Below is the basic code for 7 sectors in total.
