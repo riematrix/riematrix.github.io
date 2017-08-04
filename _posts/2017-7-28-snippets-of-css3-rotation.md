@@ -142,9 +142,9 @@ Moreover, we can strictly prove that the largest inscribed rectangle is a square
             <p class="theta">\begin{align}\theta\end{align}</p>
             <p class="alpha">\begin{align}\alpha\end{align}</p>
         </div>
-    <p class="figure-label">Figure 2</p>
-    <p>&nbsp;</p>
     </div>
+    <p class="figure-label">Figure 1</p>
+    <p>&nbsp;</p>
     <p>
         Set \(C\) as the center of the circle, \(O\) as the center of the square, ad \(D\)  as
         the intersection point of segment \(CD\) and the square edge \(AB\).
