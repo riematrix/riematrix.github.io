@@ -26,10 +26,10 @@ We will focus on creating such turntables step by step.
 <b>i.</b> Building a circle   
 
 Consider the turntable's outer container as a circle. You can create the circle with div/css3.
-Either fixed or float sizing is OK for the container. 
-In this post I use float sizing method to make the style more adaptive.
+Either fixed or float sizing is OK for it. 
+In this post I use float sizing method to make it more adaptive.
 Below is an example scss snippet of basic rules that 
-styling such a container with class name 'sectors-container'.
+styling such a container.
 
     <div class="sectors-container"></div>
 
@@ -43,24 +43,24 @@ styling such a container with class name 'sectors-container'.
 	  }
 
 The variable $container-scale can be adjusted to any size in any units if you need.
-You may also apply vw/vh rules to both width and height to build this circle.
+You may also apply vw/vh rules to both width and height.
 
 <b>ii.</b> Styling a single sector area   
 
 The turntable has arbitrary number of child sectors that uniform the circle. 
 To get a single sector with one arbitrary arc angel less than 180deg we use css3 transform 
-skew property, which is a general approach shown in above posts.   
+skew property, which is a general approach shown in others' great posts above.   
 
-Some may use shew with a given angel on one axis only. 
+Some may apply shew on one axis only. 
 We apply skew on both x and y axis with half the skew angel 
 so that the result will be a diamond rather than a parallelogram.
-The convenience of this strategy will be discussed in later sections.
+We'll also get more convenience of this strategy which will be discussed later in this post.
  
 <p markdown="0">Suppose we need to divide one circle into \(n\) sectors with the same arc angle.
-        Let \(\begin{align}\theta\end{align}\) be half of the arc angle.
-        We can get the skew angle on both x and y axis. Let \(\begin{align}\alpha\end{align}\)
-        be the that skew angle, we have:
-        \begin{align}\theta + \alpha = \frac\pi{4}\end{align}
+    Let \(\begin{align}\theta\end{align}\) be half the arc angle.
+    Let \(\begin{align}\alpha\end{align}\)
+    be the that skew angle, we have:
+    \begin{align}\theta + \alpha = \frac\pi{4}\end{align}
 </p>
 
 <b>iii.</b> Positioning of sectors in circle   
@@ -107,6 +107,8 @@ The convenience of this strategy will be discussed in later sections.
     </div>
 </div>
 
+
+
 **2. Square content area in each sector, sizing and positioning**   
 
 <b>i.</b> Square content area in each sector   
@@ -114,7 +116,7 @@ The convenience of this strategy will be discussed in later sections.
 If float content sizing & positioning is important, we need some precise controls.
 Imagine you need to put content with different size into a 
 turntable, and the content area should be as large as possible.
-Thus finding out the largest inscribed rectangle parallel with the symmetry 
+Thus finding out the largest inscribed square parallel with the symmetry 
 axis of the sector seems to be a good start.  
 
     <div class="sectors-container">
@@ -127,13 +129,12 @@ axis of the sector seems to be a good start.
 In the dom structure, the only child of each sector is the content dom.
 We can draw this geometric approach intuitivly on a white paper as shown in
 figure 1. 
-Moreover, we can strictly prove that the largest inscribed rectangle is a square.
  Below is the derivation of fetching necessary parameters for style rules.
 
 <div markdown="0">
     <div class="sector-container">
         <div class="sectors-container full f1">
-            <div class="c1"><span style="outline: 1px solid #000"></span></div>
+            <div class="c1"><span style="border: 1px solid #000"></span></div>
             <p class="pc">C</p>
             <p class="pd">D</p>
             <p class="po">O</p>
@@ -171,13 +172,13 @@ Moreover, we can strictly prove that the largest inscribed rectangle is a square
 
 The above calculated value cannot be applied as css property values directly 
 because the skew transform is not scale-invariant. 
-In order to positioning/sizing the content square in each sector, 
-we need to make reverse derivation to retrieve css rules for sectors before transform.
+In order to positioning/sizing the inner content square in each sector, 
+we need to make reverse derivation to retrieve css rules for squares before transform.
 
 <div markdown="0">
     <div class="sector-container">
         <div class="sectors-container full f2">
-            <div class="c4"><span style="outline: 1px solid #000"></span></div>
+            <div class="c4"><span style="border: 1px solid #000"></span></div>
             <p class="pc">C</p>
             <p class="po">O<sub>0</sub></p>
             <p class="pe">E</p>
