@@ -4,6 +4,15 @@ title: An adaptive css3 turntable with square content box
 description: Code snippet of 2d and 3d transform effect that build a css3 turntable.
 ---
 
+
+In this article we will build a turntable with squares in each sector unit using SCSS.
+There are many fantastic examples such as 
+[rotating-menu](http://www.inserthtml.com/2012/09/rotating-menu/) 
+and 
+[Pie-Menu](http://www.jqueryscript.net/demo/Material-Design-Styled-Pie-Menu-with-jQuery-CSS3/#). 
+We will focus on creating such turntables step by step.   
+
+
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -14,14 +23,8 @@ description: Code snippet of 2d and 3d transform effect that build a css3 turnta
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 
-In this article we will build a turntable with squares in each sector unit using SCSS.
-There are many fantastic examples such as 
-[rotating-menu](http://www.inserthtml.com/2012/09/rotating-menu/) 
-and 
-[Pie-Menu](http://www.jqueryscript.net/demo/Material-Design-Styled-Pie-Menu-with-jQuery-CSS3/#). 
-We will focus on creating such turntables step by step.   
-
 **1. A turntable with arbitrary number of sectors**   
+
 
 <b>i.</b> Building a circle   
 
